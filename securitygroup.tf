@@ -13,7 +13,7 @@ resource "aws_security_group" "allow-ssh" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["41.143.233.236/32"]
+    cidr_blocks = ["105.159.122.243/32"]
   }
   tags = {
     Name = "allow-ssh"
@@ -29,7 +29,7 @@ resource "aws_security_group" "allow-mariadb" {
     from_port       = 3306
     to_port         = 3306
     protocol        = "tcp"
-    security_groups = [aws_security_group.example-instance.id] # allowing access from our example instance
+    security_groups = [aws_security_group.allow-ssh.id] # allowing access from our example instance
   }
   egress {
     from_port   = 0
